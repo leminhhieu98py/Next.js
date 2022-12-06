@@ -2,6 +2,7 @@
   "name": "nextjs",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -18,6 +19,10 @@
     "typescript": "4.9.3"
   },
   "devDependencies": {
+    "chalk": "^5.1.2",
     "yorkie": "^2.0.0"
+  },
+  "gitHooks": {
+    "commit-msg": "node scripts/verifyCommit.js"
   }
 }
