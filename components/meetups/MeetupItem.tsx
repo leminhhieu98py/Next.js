@@ -1,14 +1,22 @@
 import Card from '../ui/Card';
 import classes from './MeetupItem.module.css';
 import { FC } from 'react';
+import { useRouter } from 'next/router';
 
 interface Props {
+  id: number;
   image: string;
   title: string;
   address: string;
 }
 
-const MeetupItem: FC<Props> = ({ image, title, address }) => {
+const MeetupItem: FC<Props> = ({ id, image, title, address }) => {
+  const router = useRouter();
+
+  const handleShowDetail = () => {
+    router.push(`/${id}`);
+  };
+
   return (
     <li className={classes.item}>
       <Card>
@@ -20,7 +28,7 @@ const MeetupItem: FC<Props> = ({ image, title, address }) => {
           <address>{address}</address>
         </div>
         <div className={classes.actions}>
-          <button>Show Details</button>
+          <button onClick={handleShowDetail}>Show Details</button>
         </div>
       </Card>
     </li>
