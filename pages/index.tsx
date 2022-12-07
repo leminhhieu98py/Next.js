@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { GetStaticProps } from 'next';
+import { FC } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
 import { IMeetup } from '../typings/meetup/meetup';
 
@@ -21,14 +22,21 @@ export const MOCK_MEETUPS: IMeetup[] = [
   }
 ];
 
-const HomePage = () => {
-  const [meetups, setMeetups] = useState<IMeetup[]>([]);
-  useEffect(() => {
-    //fetch some data
-    setMeetups(MOCK_MEETUPS);
-  }, []);
+interface Props {
+  meetups: IMeetup[];
+}
 
+const HomePage: FC<Props> = ({ meetups }) => {
   return <MeetupList meetups={meetups} />;
+};
+
+export const getStaticProps: GetStaticProps<Props> = () => {
+  return {
+    props: {
+      meetups: MOCK_MEETUPS
+    },
+    revalidate: 1
+  };
 };
 
 export default HomePage;
