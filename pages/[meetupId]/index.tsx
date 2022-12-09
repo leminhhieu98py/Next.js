@@ -4,6 +4,7 @@ import styles from './styles.module.css';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import { FC } from 'react';
 import { ParsedUrlQuery } from 'querystring';
+import Head from 'next/head';
 
 interface Props {
   meetupInfo: IMeetup | undefined;
@@ -16,6 +17,10 @@ interface IParams extends ParsedUrlQuery {
 const DetailMeetupPate: FC<Props> = ({ meetupInfo }) => {
   return (
     <>
+      <Head>
+        <title>{meetupInfo?.title}</title>
+        <meta name="description" content={meetupInfo?.description} />
+      </Head>
       {meetupInfo ? (
         <>
           <img
