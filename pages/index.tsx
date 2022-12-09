@@ -1,4 +1,5 @@
 import { GetStaticProps } from 'next';
+import Head from 'next/head';
 import { FC } from 'react';
 import MeetupList from '../components/meetups/MeetupList';
 import { IMeetup } from '../typings/meetup/meetup';
@@ -27,7 +28,15 @@ interface Props {
 }
 
 const HomePage: FC<Props> = ({ meetups }) => {
-  return <MeetupList meetups={meetups} />;
+  return (
+    <>
+      <Head>
+        <title>Meetups all the world</title>
+        <meta name="description" content="Meetups all the world" />
+      </Head>
+      <MeetupList meetups={meetups} />;
+    </>
+  );
 };
 
 export const getStaticProps: GetStaticProps<Props> = () => {
